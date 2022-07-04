@@ -7,13 +7,35 @@ import random
 import traceback
 from datetime import date, time, timedelta, datetime
 
+db = sqlite3.connect('databases/database.db')
+cur = db.cursor()
+
 class Voice_event(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
         print('Events {} is loaded'.format(self.__class__.__name__))
 
-    
+    @commands.Cog.listener()
+    async def on_voice_state_update(self, member, before, after):
+        if before.channel is None and after.channel.id == 866434778264764456:
+            role = discord.utils.get(member.guild.roles, id = 795671578829652000)
+            ower = {member: discord.PermissionOverwrite(manage_channels = True, manage_permissions = True), role: discord.PermissionOverwrite(view_channel = True, connect = True, manage_channels = False, manage_permissions = False)}
+            private_vc = await member.guild.create_voice_channel(name = f"Домик {member.name}", category = member.guild.get_channel(993104434575986698), overwrites = ower)
+            cur.execute("INSERT INTO private_voice VALUES (?, ?)", [private_vc.id, member.id])
+            db.commit()
+            await member.move_to(channel = private_vc)
+        elif before.channel is not None and after.channel is None:
+            try:
+                if before.channel.id == cur.execute("SELECT channel FROM private_voice WHERE id = {}".format(member.id)).fetchone()[0]:
+                    await before.channel.delete()
+                    cur.execute("DELETE FROM private_voice WHERE id = {}".format(member.id))
+                    db.commit()
+                else:
+                    pass
+            except:
+                pass
+
 
 def setup(client):
     client.add_cog(Voice_event(client))

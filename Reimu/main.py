@@ -24,6 +24,12 @@ async def load_extension():
         except Exception as e:
             print(f"Ошибка загрузки команд: {e}") 
 
+    for events in settings['events']:
+        try:
+            client.load_extension(events)
+        except Exception as e:
+            print(f"Ошибка загрузки событий: {e}")
+
 async def main():
     tablecreate()
     await load_extension()
