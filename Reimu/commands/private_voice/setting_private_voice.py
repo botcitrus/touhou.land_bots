@@ -424,7 +424,7 @@ class Setting_private(commands.Cog):
         print('Commands {} is loaded'.format(self.__class__.__name__))
 
     @commands.command()
-    @commands.has_any_role(977141423931523092)
+    @commands.has_any_role(991966312555348029)
     async def setting_voice(self, ctx):
         await ctx.message.delete()
         await ctx.send(embed = discord.Embed(

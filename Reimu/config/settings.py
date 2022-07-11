@@ -3,11 +3,15 @@ settings = {
     "commands": [
         "commands.verefy.verefy",
         "commands.private_voice.setting_private_voice",
+        "commands.economic.shop",
+        "commands.economic.addlot"
     ],
     "errors": [
         "system.errors.MissingAnyRole_error"
     ],
     "events": [
-        "system.events.voice_event"
+        "system.events.voice_event",
+        "system.events.events"
     ]
 }
+# OTkxNjEyMzcwODQ3ODA1NTMx.GRviSF.2VP-vRFyZu1lVOo77yp273wjv60iJilJpi7amc
