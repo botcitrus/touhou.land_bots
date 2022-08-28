@@ -40,7 +40,7 @@ class YesOrNo(discord.ui.View):
         connection.commit()
 
         embed = discord.Embed(title='Заключить брак',
-                              description=f'Поздравляем, {self.member.mention} и {self.inter.author.mention} с заключением брака!\nСо счета {self.inter.author.mention} было списано `2500` <a:crystal:996045979084132382>',
+                              description=f'Поздравляем, {self.member.mention} и {self.inter.author.mention} с заключением брака!\nСо счета {self.inter.author.mention} было списано `25000` <a:crystal:996045979084132382>',
                               color=0x2f3136)
         embed.set_thumbnail(url=self.inter.author.display_avatar)
         await interaction.response.edit_message(embed=embed, view=None)
@@ -69,19 +69,16 @@ class Back(discord.ui.View):
 
         loveprofile_name = cursor.execute(
             "SELECT name FROM loveprofile WHERE first_member = {} OR second_member = {}".format(self.member.id,
-                                                                                                self.member.id)).fetchone()[
-            0]
+                                                                                                self.member.id)).fetchone()[0]
         date = cursor.execute(
             "SELECT date FROM loveprofile WHERE first_member = {} OR second_member = {}".format(self.member.id,
-                                                                                                self.member.id)).fetchone()[
-            0]
+                                                                                                self.member.id)).fetchone()[0]
         steamy_online = cursor.execute(
             "SELECT steamy_online FROM loveprofile WHERE  first_member = {} OR second_member = {}".format(
                 self.member.id, self.member.id)).fetchone()[0]
         balance = cursor.execute(
             "SELECT balance FROM loveprofile WHERE first_member = {} OR second_member = {}".format(self.member.id,
-                                                                                                   self.member.id)).fetchone()[
-            0]
+                                                                                                   self.member.id)).fetchone()[0]
 
         if steamy_online == 0:
             online = "0 ч. 0 мин."
@@ -131,7 +128,11 @@ class LoveButtons(discord.ui.View):
         if interaction.user == self.first_member or interaction.user == self.second_member:
             return True
         else:
-            return False
+            await interaction.response.send_message(
+                embed = discord.Embed(
+                    description=f"Это взаимодействие может использовать только `{self.member.name}`"
+                ), ephemeral=True
+            )
 
     @discord.ui.button(label="Развод", style=discord.ButtonStyle.red, emoji="<:851538720519618590:991994861848899636>")
     async def divorce(self, button: discord.ui.Button, interaction: discord.MessageInteraction):
@@ -277,30 +278,24 @@ class Family(commands.Cog, name="Family", description="Команды для о�
         else:
             loveprofile_name = cursor.execute(
                 "SELECT name FROM loveprofile WHERE first_member = {} OR second_member = {}".format(member.id,
-                                                                                                    member.id)).fetchone()[
-                0]
+                                                                                                    member.id)).fetchone()[0]
             first = cursor.execute(
                 "SELECT first_member FROM loveprofile WHERE first_member = {} OR second_member = {}".format(member.id,
-                                                                                                            member.id)).fetchone()[
-                0]
+                                                                                                            member.id)).fetchone()[0]
             second = cursor.execute(
                 "SELECT second_member FROM loveprofile WHERE first_member = {} OR second_member = {}".format(member.id,
-                                                                                                             member.id)).fetchone()[
-                0]
+                                                                                                             member.id)).fetchone()[0]
             date = cursor.execute(
                 "SELECT date FROM loveprofile WHERE first_member = {} OR second_member = {}".format(member.id,
-                                                                                                    member.id)).fetchone()[
-                0]
+                                                                                                    member.id)).fetchone()[0]
             steamy_online = cursor.execute(
                 "SELECT steamy_online FROM loveprofile WHERE  first_member = {} OR second_member = {}".format(member.id,
-                                                                                                              member.id)).fetchone()[
-                0]
+                                                                                                              member.id)).fetchone()[0]
             balance = cursor.execute(
                 "SELECT balance FROM loveprofile WHERE first_member = {} OR second_member = {}".format(member.id,
-                                                                                                       member.id)).fetchone()[
-                0]
-            first_member = self.client.get_user(first)
-            second_member = self.client.get_user(second)
+                                                                                                       member.id)).fetchone()[0]
+            first_member = inter.guild.get_member(first)
+            second_member = inter.guild.get_member(second)
 
             if steamy_online == 0:
                 online = "В разработке"
@@ -366,7 +361,7 @@ class Family(commands.Cog, name="Family", description="Команды для о�
                                   description=f'{inter.author.mention}, хочет заключить брак с {member.mention}, согласны ли вы?',
                                   color=0x2f3136)
             embed.set_thumbnail(url=inter.author.display_avatar)
-            await inter.send(f'{member.mention}', embed=embed, view=YesorNo(inter, inter.author, member))
+            await inter.send(f'{member.mention}', embed=embed, view=YesOrNo(inter, inter.author, member))
 
 
 def setup(client):

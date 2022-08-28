@@ -1,6 +1,11 @@
 import discord
 from discord.ext import commands
-
+import json
+import sqlite3
+from discord.ui import Button, View, Select
+import random
+import traceback
+from datetime import date, time, timedelta, datetime
 
 class MissingAnyRole(commands.Cog):
 
@@ -17,13 +22,12 @@ class MissingAnyRole(commands.Cog):
                     description=f"{ctx.author.mention} у вас нет прав на это действие!"
                 )
                 await ctx.author.send(embed=embed)
-            except Exception as e:
+            except:
                 embed = discord.Embed(
                     title="Недостаточно прав!",
                     description=f"{ctx.author.mention} у вас нет прав на это действие!"
                 )
                 await ctx.send(embed=embed)
-
 
 def setup(client):
     client.add_cog(MissingAnyRole(client))

@@ -53,7 +53,7 @@ class VerefyButton(discord.ui.View):
     async def a_callback(self, button, interaction):
         verefication_code = random.randint(1000, 9999)
         modal = VerefyModal(self.bot, verefication_code)
-        await interaction.response.send_modal(modal) #
+        await interaction.response.send_modal(modal)
 
 
 class Verefy(commands.Cog):

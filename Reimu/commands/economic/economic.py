@@ -116,7 +116,7 @@ class Button_forward(discord.ui.Button):
             self.limit += 5
             if self.current_page > len(self.pages):
                 self.current_page = 1
-                self.con_one = self.limit
+                self.con_one = 0
                 self.limit = 0
 
             view = discord.ui.View()
@@ -599,6 +599,7 @@ class Ecomomic(commands.Cog, name="Economic",
     @commands.command(name="addlot", aliases=["новыйлот", "newlot"],
                       help="Добовляет новый лот в магазин за определённую плату", description="None")
     @commands.cooldown(1, (3), commands.BucketType.user)
+    @commands.has_any_role(977141423931523092, 795606283339563018)
     async def addlot(self, ctx):
         lotButton = Button(label="Создать лот", style=discord.ButtonStyle.gray, emoji="<:plus:986553043464106024>")
 
@@ -630,7 +631,7 @@ class Ecomomic(commands.Cog, name="Economic",
         db.commit()
         for row in cur.execute("SELECT hands FROM users WHERE id = {}".format(ctx.author.id)):
             emb = discord.Embed(color=0x50d7ad, title="Работа",
-                                description=f"\nВы заработали: {gold} <a:crystal:996045979084132382>\nБаланс: {row[0]} <a:crystal:996045979084132382>")
+                                description=f"\nВы заработали: {gold} <a:crystal:996045979084132382>\nБаланс: {row[0]} <a:crystal:996045979084132382>\n")
         emb.set_footer(text=f"Запрос от {author} • {dt.datetime.now().strftime('%d.%m.%Y, %H:%M:%S')}")
         emb.set_thumbnail(
             url='https://media1.tenor.com/images/5c74cfecbfdbb1b36cced28bff9584d2/tenor.gif?itemid=25407710')
@@ -650,3 +651,4 @@ class Ecomomic(commands.Cog, name="Economic",
 
 def setup(client):
     client.add_cog(Ecomomic(client))
+

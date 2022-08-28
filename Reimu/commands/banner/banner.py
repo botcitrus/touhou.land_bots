@@ -1,6 +1,6 @@
 from discord.ext import commands, tasks
 import sqlite3
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageSequence
 from io import BytesIO
 
 connection = sqlite3.connect("databases/database.db")

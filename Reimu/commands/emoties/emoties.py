@@ -35,7 +35,7 @@ class Emoties(commands.Cog, name="Emoties",
             await ctx.reply(embed=embed)
         else:
             embed = discord.Embed(
-                description=f"**{author}"[:-5] + "**" + " " + f"_крепко обнял(а)_ **{member}"[:-5] + "**")
+                description=f"**{author.name}" + "**" + " " + f"_крепко обнял(а)_ **{member.name}" + "**")
             embed.set_image(url=urls[r])
             await ctx.reply(embed=embed)
 
@@ -59,7 +59,7 @@ class Emoties(commands.Cog, name="Emoties",
             await ctx.reply(embed=embed)
         else:
             embed = discord.Embed(
-                description=f"**{author}"[:-5] + "**" + " " + f"_страстно поцеловал(а)_ **{member}"[:-5] + "**")
+                description=f"**{author.name}" + "**" + " " + f"_страстно поцеловал(а)_ **{member.name}" + "**")
             embed.set_image(url=f"{urls[z]}")
             await ctx.reply(embed=embed)
 
@@ -89,7 +89,7 @@ class Emoties(commands.Cog, name="Emoties",
             embed.set_image(url="https://c.tenor.com/EfhPfbG0hnMAAAAC/slap-handa-seishuu.gif")
             await ctx.reply(embed=embed)
         else:
-            embed = discord.Embed(description=f"**{author}"[:-5] + "**" + " " + f"_ударил(а)_ **{member}"[:-5] + "**")
+            embed = discord.Embed(description=f"**{author.name}" + "**" + " " + f"_ударил(а)_ **{member.name}" + "**")
             embed.set_image(url=f"{urls[f]}")
             await ctx.reply(embed=embed)
 
@@ -116,7 +116,7 @@ class Emoties(commands.Cog, name="Emoties",
             embed.set_image(url="https://c.tenor.com/EfhPfbG0hnMAAAAC/slap-handa-seishuu.gif")
             await ctx.reply(embed=embed)
         else:
-            embed = discord.Embed(description=f"**{author}"[:-5] + "**" + " " + f"_погладил(а)_ **{member}"[:-5] + "**")
+            embed = discord.Embed(description=f"**{author.name}" + "**" + " " + f"_погладил(а)_ **{member.name}" + "**")
             embed.set_image(url=f"{urls[t]}")
             await ctx.reply(embed=embed)
 
@@ -136,7 +136,7 @@ class Emoties(commands.Cog, name="Emoties",
 
         e = random.randint(0, 6)
 
-        embed = discord.Embed(description=f"**{author}"[:-5] + "**" + " _курит_")
+        embed = discord.Embed(description=f"**{author.name}" + "**" + " _курит_")
         embed.set_image(url=f"{urls[e]}")
         await ctx.reply(embed=embed)
 
@@ -155,7 +155,7 @@ class Emoties(commands.Cog, name="Emoties",
 
         w = random.randint(0, 5)
 
-        embed = discord.Embed(description=f"**{author}"[:-5] + "**" + " _грустит_")
+        embed = discord.Embed(description=f"**{author.name}" + "**" + " _грустит_")
         embed.set_image(url=f"{urls[w]}")
         await ctx.reply(embed=embed)
 
@@ -184,7 +184,7 @@ class Emoties(commands.Cog, name="Emoties",
             embed.set_image(url=f"{urls[w]}")
             await ctx.reply(embed=embed)
         else:
-            embed = discord.Embed(description=f"**{author}"[:-5] + "**" + f" _злится на_ **{member}"[:-5] + "**")
+            embed = discord.Embed(description=f"**{author.name}" + "**" + f" _злится на_ **{member.name}" + "**")
             embed.set_image(url=f"{urls[w]}")
             await ctx.reply(embed=embed)
 
@@ -209,7 +209,7 @@ class Emoties(commands.Cog, name="Emoties",
             await message.delete()
             await ctx.reply(embed=embed)
         else:
-            embed = discord.Embed(description=f"**{author}"[:-5] + "**" + " " + f"_укусил(а)_ **{member}"[:-5] + "**")
+            embed = discord.Embed(description=f"**{author.name}" + "**" + " " + f"_укусил(а)_ **{member.name}" + "**")
             embed.set_image(url=f"{urls[w]}")
             await ctx.reply(embed=embed)
 
@@ -231,15 +231,15 @@ class Emoties(commands.Cog, name="Emoties",
         w = random.randint(1, 7)
 
         if member == None:
-            embed = discord.Embed(description=f"{author}"[:-5] + " _похлопал_")
+            embed = discord.Embed(description=f"{author.name}" + " _похлопал_")
             embed.set_image(url=urls[w])
             await ctx.reply(embed=embed)
         elif member == author:
-            embed = discord.Embed(description=f"{author}"[:-5] + " _похлопал себе хорошенькому_")
+            embed = discord.Embed(description=f"{author.name}" + " _похлопал себе хорошенькому_")
             embed.set_image(url=urls[w])
             await ctx.reply(embed=embed)
         else:
-            embed = discord.Embed(description=f"**{author}"[:-5] + "**" + " " + f"_похлопал(а)_ **{member}"[:-5] + "**")
+            embed = discord.Embed(description=f"**{author.name}" + "**" + " " + f"_похлопал(а)_ **{member.name}" + "**")
             embed.set_image(url=urls[w])
             await ctx.reply(embed=embed)
 
@@ -254,7 +254,7 @@ class Emoties(commands.Cog, name="Emoties",
                 "https://c.tenor.com/Nk-Eq8_ZiNwAAAAC/index-toaru.gif"]
         w = random.randint(0, 4)
 
-        embed = discord.Embed(description=f"**{author.namr}" + "**" + " " + f"_покормил_ **{member}"[:-5] + "**")
+        embed = discord.Embed(description=f"**{author.name}" + "**" + " " + f"_покормил_ **{member.name}" + "**")
         embed.set_image(url=urls[w])
         await ctx.reply(embed=embed)
 
@@ -268,7 +268,7 @@ class Emoties(commands.Cog, name="Emoties",
                 'https://c.tenor.com/mKTS5nbF1zcAAAAC/cute-anime-dancing.gif']
         rand = random.randint(0, 4)
 
-        embed = discord.Embed(description=f"**{author}"[:-5] + "**" + " _танцует_")
+        embed = discord.Embed(description=f"**{author.name}"[:-5] + "**" + " _танцует_")
         embed.set_image(url=f'{urls[rand]}')
         await ctx.reply(embed=embed)
 

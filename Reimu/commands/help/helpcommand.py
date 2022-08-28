@@ -18,6 +18,7 @@ class HelpEmbed(discord.Embed):  # Our embed with some preset attributes to avoi
 class MyHelp(commands.MinimalHelpCommand):
 
     async def send_bot_help(self, commands):
+        ctx = self.context
         pages = [
             Page(
                 embeds=[
@@ -144,11 +145,11 @@ class MyHelp(commands.MinimalHelpCommand):
                         value="Купить роль в магазине за определённую сумму",
                         inline=False
                     )
-                    # .add_field(
-                    #     name="+addlot",
-                    #     value="Добавляет новый лот в магазин за определённую плату",
-                    #     inline=False
-                    # )
+                    #.add_field(
+                    #    name="+addlot",
+                    #    value="Добавляет новый лот в магазин за определённую плату",
+                    #    inline=False
+                    #)
                     .add_field(
                         name="+work",
                         value="Заработать денег на работе",
@@ -205,7 +206,6 @@ class MyHelp(commands.MinimalHelpCommand):
                 ],
             ),
         ]
-        ctx = self.context
         buttons = [
             PaginatorButton("first", emoji="<:firstPage:1002272225023512736> ", style=discord.ButtonStyle.green),
             PaginatorButton("prev", emoji="<:previousPage:1002272197412405359> ", style=discord.ButtonStyle.green),
